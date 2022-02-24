@@ -20,10 +20,14 @@ public class CustomerController {
 
     @GetMapping(value = "/customers")
     public ResponseEntity<List<Customer>> getAllCustomers(
-            @RequestParam(required = false, name = "courseName") String name
-    ) {
-        if (name != null) {
-            return new ResponseEntity<>(customerRepository.findCustomersByBookingsCourseName(name), HttpStatus.OK);
+            @RequestParam(required = false, name = "courseName") String courseName,
+            @RequestParam(required = false, name = "townName") String townName
+    ) { if (townName != null && courseName != null){
+        return new ResponseEntity<>(customerRepository.findCustomersByHometownAndBookingsCourseName(townName, courseName), HttpStatus.OK);
+    }
+        if (courseName != null)
+        {
+            return new ResponseEntity<>(customerRepository.findCustomersByBookingsCourseName(courseName), HttpStatus.OK);
         }
         return new ResponseEntity<>(customerRepository.findAll(), HttpStatus.OK);
     }
