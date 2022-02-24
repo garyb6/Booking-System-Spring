@@ -49,4 +49,11 @@ class CourseBookingSystemApplicationTests {
 		assertEquals(1, found.size());
 	}
 
+	@Test
+	public void canFindCourseByCustomerName(){
+		List<Course> foundCourses = courseRepository.findCoursesByBookingsCustomerName("andrew");
+		assertEquals(1, foundCourses.size());
+		assertEquals("python", foundCourses.get(0).getName());
+	}
+
 }
