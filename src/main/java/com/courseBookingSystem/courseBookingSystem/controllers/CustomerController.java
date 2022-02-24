@@ -26,5 +26,5 @@ public class CustomerController {
     public ResponseEntity getCustomer(@PathVariable Long id){
         return new ResponseEntity(customerRepository.findById(id), HttpStatus.OK);
     }
-    
+
 }
