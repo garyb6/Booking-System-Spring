@@ -21,10 +21,15 @@ public class CustomerController {
     @GetMapping(value = "/customers")
     public ResponseEntity<List<Customer>> getAllCustomers(
             @RequestParam(required = false, name = "courseName") String courseName,
-            @RequestParam(required = false, name = "townName") String townName
-    ) { if (townName != null && courseName != null){
-        return new ResponseEntity<>(customerRepository.findCustomersByHometownAndBookingsCourseName(townName, courseName), HttpStatus.OK);
+            @RequestParam(required = false, name = "townName") String townName,
+            @RequestParam(required = false, name = "age") Integer age
+    )
+    {   if (age == null){
+        age = 0;
     }
+        if (townName != null && courseName != null){
+            return new ResponseEntity<>(customerRepository.findCustomersByHometownAndBookingsCourseNameAndAgeGreaterThanEqual(townName, courseName, age), HttpStatus.OK);
+        }
         if (courseName != null)
         {
             return new ResponseEntity<>(customerRepository.findCustomersByBookingsCourseName(courseName), HttpStatus.OK);

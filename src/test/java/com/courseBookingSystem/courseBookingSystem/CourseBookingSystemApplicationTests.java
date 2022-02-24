@@ -69,10 +69,13 @@ class CourseBookingSystemApplicationTests {
 		assertEquals(1, found.size());
 	}
 
-	@Test public void canFindCustomersByHometownAndCourseName(){
-		List<Customer> found = customerRepository.findCustomersByHometownAndBookingsCourseName("edinburgh", "python");
+	@Test
+	public void canFindCustomersByHometownAndCourseNameAndAgeGreaterThanEqual(){
+		List<Customer> found = customerRepository.findCustomersByHometownAndBookingsCourseNameAndAgeGreaterThanEqual("edinburgh", "python", 17);
 		assertEquals(1, found.size());
+		List<Customer> found2 = customerRepository.findCustomersByHometownAndBookingsCourseNameAndAgeGreaterThanEqual("edinburgh", "python", 29);
+		assertEquals(0, found2.size());
+
 	}
 
-	
 }
