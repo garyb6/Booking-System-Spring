@@ -17,12 +17,12 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false)
-    @JsonIgnoreProperties(value = "courses")
+    @JsonIgnoreProperties(value = "bookings")
     private Course course;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
-    @JsonIgnoreProperties(value = "customers")
+    @JsonIgnoreProperties(value = "bookings")
     private Customer customer;
 
     public Booking(String date, Course course, Customer customer) {
