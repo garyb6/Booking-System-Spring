@@ -21,7 +21,7 @@ public class CourseController {
     @GetMapping(value = "/courses")
     public ResponseEntity<List<Course>> getAllCourses(
             @RequestParam(required = false, name = "rating") Integer rating,
-            @RequestParam(required = false, name = "customerName") String  name
+            @RequestParam(required = false, name = "customerName") String name
     ){
         if(rating != null){
             return new ResponseEntity<>(courseRepository.findCoursesByRating(rating), HttpStatus.OK);
