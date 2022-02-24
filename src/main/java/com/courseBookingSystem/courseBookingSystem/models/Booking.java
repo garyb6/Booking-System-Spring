@@ -1,13 +1,28 @@
 package com.courseBookingSystem.courseBookingSystem.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "bookings")
 public class Booking {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "date")
     private String date;
 
+    @ManyToOne
+    @JoinColumn(name = "course_id", nullable = false)
+    @JsonIgnoreProperties(value = "courses")
     private Course course;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
+    @JsonIgnoreProperties(value = "customers")
     private Customer customer;
 
     public Booking(String date, Course course, Customer customer) {
