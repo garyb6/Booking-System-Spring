@@ -51,14 +51,14 @@ class CourseBookingSystemApplicationTests {
 
 	@Test
 	public void canFindCourseByCustomerName(){
-		List<Course> foundCourses = courseRepository.findCoursesByBookingsCustomerName("andrew");
+		List<Course> foundCourses = courseRepository.findCoursesByBookingsCustomerNameIgnoreCase("Andrew");
 		assertEquals(1, foundCourses.size());
 		assertEquals("python", foundCourses.get(0).getName());
 	}
 
 	@Test
 	public void canFindCustomersByCourseName(){
-		List<Customer> found = customerRepository.findCustomersByBookingsCourseName("python");
+		List<Customer> found = customerRepository.findCustomersByBookingsCourseNameIgnoreCase("pYthon");
 		assertEquals(1, found.size());
 		assertEquals("andrew", found.get(0).getName());
 	}
@@ -71,9 +71,9 @@ class CourseBookingSystemApplicationTests {
 
 	@Test
 	public void canFindCustomersByHometownAndCourseNameAndAgeGreaterThanEqual(){
-		List<Customer> found = customerRepository.findCustomersByHometownAndBookingsCourseNameAndAgeGreaterThanEqual("edinburgh", "python", 17);
+		List<Customer> found = customerRepository.findCustomersByHometownIgnoreCaseAndBookingsCourseNameIgnoreCaseAndAgeGreaterThanEqual("Edinburgh", "Python", 17);
 		assertEquals(1, found.size());
-		List<Customer> found2 = customerRepository.findCustomersByHometownAndBookingsCourseNameAndAgeGreaterThanEqual("edinburgh", "python", 29);
+		List<Customer> found2 = customerRepository.findCustomersByHometownIgnoreCaseAndBookingsCourseNameIgnoreCaseAndAgeGreaterThanEqual("edinburgH", "pythOn", 29);
 		assertEquals(0, found2.size());
 
 	}
