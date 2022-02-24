@@ -68,4 +68,11 @@ class CourseBookingSystemApplicationTests {
 		List<Booking> found = bookingRepository.findBookingsByDate("15-11-21");
 		assertEquals(1, found.size());
 	}
+
+	@Test public void canFindCustomersByHometownAndCourseName(){
+		List<Customer> found = customerRepository.findCustomersByHometownAndBookingsCourseName("edinburgh", "python");
+		assertEquals(1, found.size());
+	}
+
+	
 }
